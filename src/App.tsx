@@ -31,7 +31,12 @@ function App() {
       <CodeEditor code={code} onChange={onChange}  />
       <div style={{ width: 'calc(40% - 4rem)', marginLeft: '3rem' }}>
         <OutputScreen output={output}></OutputScreen>
-        <Button style={{ float: 'right', margin: '17px 2px' }}>Compile and Execute</Button>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
+          <Button style={{ float: 'right', margin: '17px 2px' }}>Compile and Execute</Button>
+        </div>
+        <div>
+          Language Specs:
+        </div>
       </div>
     </AppWrapper>
   )

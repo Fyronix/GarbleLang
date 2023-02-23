@@ -5,8 +5,8 @@ import { EditorWrapper } from "./OutputScreenStyles";
 import { EDITOR_HEIGHT } from "../constants";
 import Title from "./Title";
 
-export const OutputScreen = ({ onChange, output }
-        : {onChange: (s: string, v: string) => void, output: any }) => {
+export const OutputScreen = ({ output }
+        : { output: string }) => {
 
     return (
         <>
