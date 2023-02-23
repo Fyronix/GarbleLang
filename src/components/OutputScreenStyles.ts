@@ -3,13 +3,20 @@ import styled from "styled-components";
 import { EDITOR_HEIGHT, PAGE_PADDING } from "../constants";
 
 export const EditorWrapper = styled.div`
-    width: 60%;
+    height: 30%;
 
-    border: 3px solid #000;
+    border: 2px solid #000;
     border-radius: 5px;
-    box-shadow: rgb(0 0 0) 5px 5px 0px 0px;
 
     overflow: hidden;
 
+    background: #1e293b;
     padding: 15px 0 5px 0;
+
+    color: #fff;
+    padding: 20px;
+    font-size: 15px;
+
+    overflow-x: break;
+    overflow-y: auto;
 `
