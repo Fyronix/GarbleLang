@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AppWrapper } from './appStyles'
 import Button from './components/Button';
 import {CodeEditor} from './components/CodeEditor'
 import { OutputScreen } from './components/OutputScreen';
+import { GarbleLang } from './language';
 
 const DEFAULT_CODE = `% Hello, world! Type something and click "Run" to execute`;
+var compiler = new GarbleLang();
 
 function App() {
   const [code, setCode] = useState(DEFAULT_CODE);
@@ -36,6 +38,17 @@ function App() {
         </div>
         <div>
           Language Specs:
+          <div>
+            <ul>
+              <li>Print Instruction: <u>{compiler.ctx.commands.print[0]}</u></li>
+              <li>Input Instruction: <u>{compiler.ctx.commands.input[0]}</u></li>
+              <li>Label Creation: <u>{compiler.ctx.commands.label[0]}</u></li>
+              <li>Goto Instruction: <u>{compiler.ctx.commands.goto[0]}</u></li>
+              <li>Conditional goto: <u>{compiler.ctx.commands.condBr[0]}</u></li>
+              <li>Increment: <u>{compiler.ctx.commands.increment[0]}</u></li>
+              <li>Decrement: <u>{compiler.ctx.commands.decrement[0]}</u></li>
+            </ul>
+          </div>
         </div>
       </div>
     </AppWrapper>
