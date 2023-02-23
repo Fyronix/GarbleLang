@@ -1,7 +1,7 @@
 import { Context } from "./context";
 import { IntructionArgument } from "./instruction"
 
-export type CommandFunction = (a: IntructionArgument, c: Context) => void;
+export type CommandFunction = (a: IntructionArgument[], c: Context) => void;
 export default interface Commands {
     print:     [n: string, f: CommandFunction];
     input:     [n: string, f: CommandFunction];

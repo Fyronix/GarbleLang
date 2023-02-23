@@ -1,4 +1,9 @@
+import { Context } from "./context";
 
-export default class {
-    
+export class GarbleLang {
+    public readonly ctx: Context;
+    constructor() {
+        // TODO: instruction already defined!
+        this.ctx = new Context();
+    }
 }
