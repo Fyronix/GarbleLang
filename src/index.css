@@ -17,10 +17,10 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-  /* letter-spacing: 1px; */
+  	letter-spacing: 1px;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -42,4 +42,36 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	table-layout: fixed;
+
+	margin: 40px 0 0 0;
+}
+
+table thead th {
+	text-align: start;
+	padding: 0 10px;
+}
+
+table tr td {
+    padding: 12px 15px;
+
+	width: 25%;
+
+	text-align: start;
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* justify-content: center; */
+    border-bottom: 1px solid #dddddd;
+}
+
+table tr td:last-child {
+	width: 40%;
+}
+
+table tr tdtr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+table tr {
+	margin: 10px 0;
 }

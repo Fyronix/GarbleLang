@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { EDITOR_HEIGHT, PAGE_PADDING } from "../constants";
 
 export const EditorWrapper = styled.div`
-    width: 60%;
+    width: 100%;
 
     border: 3px solid #000;
     border-radius: 5px;
@@ -11,5 +11,6 @@ export const EditorWrapper = styled.div`
 
     overflow: hidden;
 
-    padding: 15px 0 5px 0;
+    padding: 20px 0;
+    margin-bottom: 10px;
 `

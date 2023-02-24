@@ -30,25 +30,67 @@ function App() {
 
   return (
     <AppWrapper>
-      <CodeEditor code={code} onChange={onChange}  />
-      <div style={{ width: 'calc(40% - 4rem)', marginLeft: '3rem' }}>
-        <OutputScreen output={output}></OutputScreen>
+      <div style={{ width: '50%', height: '100vh' }}>
+        <CodeEditor code={code} onChange={onChange}  />
         <div style={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
           <Button style={{ float: 'right', margin: '17px 2px' }}>Compile and Execute</Button>
         </div>
+      </div>
+      <div style={{ width: 'calc(50% - 4rem)', marginLeft: '3rem' }}>
+        <OutputScreen output={output}></OutputScreen>
         <div>
-          Language Specs:
-          <div>
-            <ul>
-              <li>Print Instruction: <u>{compiler.ctx.commands.print[0]}</u></li>
-              <li>Input Instruction: <u>{compiler.ctx.commands.input[0]}</u></li>
-              <li>Label Creation: <u>{compiler.ctx.commands.label[0]}</u></li>
-              <li>Goto Instruction: <u>{compiler.ctx.commands.goto[0]}</u></li>
-              <li>Conditional goto: <u>{compiler.ctx.commands.condBr[0]}</u></li>
-              <li>Increment: <u>{compiler.ctx.commands.increment[0]}</u></li>
-              <li>Decrement: <u>{compiler.ctx.commands.decrement[0]}</u></li>
-            </ul>
-          </div>
+          <table border={1}>
+            <thead>
+              <th>Instruction</th>
+              <th>Identification</th>
+              <th>Arguments</th>
+              <th>Description</th>
+            </thead>
+
+            <tr>
+              <td>Print Inst.</td>
+              <td>{compiler.ctx.commands.print[0]}</td>
+              <td>[String] | [Number] | [Adress containing a value]</td>
+              <td>Append a value to the output. (no return value)</td>
+            </tr>
+            <tr>
+              <td>Input Inst.</td>
+              <td>{compiler.ctx.commands.input[0]}</td>
+              <td></td>
+              <td>Get a string from the input.</td>
+            </tr>
+
+            <tr>
+              <td>Label</td>
+              <td>{compiler.ctx.commands.label[0]}</td>
+              <td>No arguments</td>
+              <td>Create a new label you can the go back to. (returns a label adress)</td>
+            </tr>
+            <tr>
+              <td>Goto Inst.</td>
+              <td>{compiler.ctx.commands.goto[0]}</td>
+              <td>[label adress]</td>
+              <td>Go back to an adress.</td>
+            </tr>
+            <tr>
+              <td>Conditional goto</td>
+              <td>{compiler.ctx.commands.condBr[0]}</td>
+              <td>[Number, label if arg # 1 is "1", label if arg # 1 is not equal to "1"]</td>
+              <td>Deduce what goto should be transported to.</td>
+            </tr>
+            <tr>
+              <td>Increment Inst.</td>
+              <td>{compiler.ctx.commands.increment[0]}</td>
+              <td>[Number] | [Adress containing a value]</td>
+              <td>Increment a value by 1.</td>
+            </tr>
+            <tr>
+              <td>Decrement Inst.</td>
+              <td>{compiler.ctx.commands.decrement[0]}</td>
+              <td>[Number] | [Adress containing a value]</td>
+              <td>Decrement a value by 1.</td>
+            </tr>
+          </table>
         </div>
       </div>
     </AppWrapper>
