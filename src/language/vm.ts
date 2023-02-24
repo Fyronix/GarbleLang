@@ -1,7 +1,7 @@
 import Commands from "./commands";
 import { Instruction, IntructionArgument } from "./instruction";
 
-class VM {
+export class VM {
     private pc: number = 0;
     private memory: Map<number, string | undefined>;
     private readonly program: Instruction[];
@@ -13,7 +13,7 @@ class VM {
         this.instSet = instSet;
     }
 
-    public run(stdout: string) {
+    public run(stdout: (v: string) => void) {
         while (this.pc < this.program.length) {
             let inst = this.program[this.pc];
 
@@ -21,7 +21,7 @@ class VM {
                 case this.instSet.print: {
                     this.expectNArgs(1, inst.args, "print")
                     let val = this.getFinalValue(inst.args[0]);
-                    stdout += `${val}\n`;
+                    stdout(`${val}\n`);
                 } break;
             }
         }

@@ -28,12 +28,16 @@ function App() {
     }
   };
 
+  const compileSource = () => {
+    compiler.run(code, setOutput);
+  }
+
   return (
     <AppWrapper>
       <div style={{ width: '50%', height: '100vh' }}>
         <CodeEditor code={code} onChange={onChange}  />
         <div style={{ width: '100%', display: 'flex', justifyContent: 'end' }}>
-          <Button style={{ float: 'right', margin: '17px 2px' }}>Compile and Execute</Button>
+          <Button onClick={compileSource} style={{ float: 'right', margin: '17px 2px' }}>Compile and Execute</Button>
         </div>
       </div>
       <div style={{ width: 'calc(50% - 4rem)', marginLeft: '3rem' }}>

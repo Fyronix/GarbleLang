@@ -12,7 +12,7 @@ export const OutputScreen = ({ output }
         <>
             <Title>Generated Output:</Title>
             <EditorWrapper>
-                {output}
+                <span dangerouslySetInnerHTML={{ __html: output }}></span>
             </EditorWrapper>
         </>
     );

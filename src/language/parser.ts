@@ -37,6 +37,10 @@ export class Parser {
     private parseInstruction(line: string): Instruction {
         // Extract the operation name and arguments
         const [operation, argString, addressString] = line.split(" ");
+        if (typeof operation === 'undefined' || typeof argString === 'undefined') {
+            throw Error(`Invalid instruction declaration on line ${this.lineNumber}`);
+        }
+
         const args = this.parseArguments(argString);
         const address = this.parseAddress(addressString);
 
