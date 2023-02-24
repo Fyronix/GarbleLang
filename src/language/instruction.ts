@@ -1,5 +1,5 @@
 
-export type IntructionArgument = string;
+export type IntructionArgument = string | number;
 
 export interface Instruction {
     operation: string;

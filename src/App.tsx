@@ -49,44 +49,38 @@ function App() {
 
             <tr>
               <td>Print Inst.</td>
-              <td>{compiler.ctx.commands.print[0]}</td>
+              <td>{compiler.ctx.commands.print}</td>
               <td>[String] | [Number] | [Adress containing a value]</td>
               <td>Append a value to the output. (no return value)</td>
             </tr>
             <tr>
               <td>Input Inst.</td>
-              <td>{compiler.ctx.commands.input[0]}</td>
+              <td>{compiler.ctx.commands.input}</td>
               <td></td>
               <td>Get a string from the input.</td>
             </tr>
 
             <tr>
-              <td>Label</td>
-              <td>{compiler.ctx.commands.label[0]}</td>
+              <td>While</td>
+              <td>{compiler.ctx.commands.while}</td>
+              <td>Value with number</td>
+              <td>Iterate until the number hits "0"</td>
+            </tr>
+            <tr>
+              <td>End while loop</td>
+              <td>{compiler.ctx.commands.endWhile}</td>
               <td>No arguments</td>
-              <td>Create a new label you can the go back to. (returns a label adress)</td>
-            </tr>
-            <tr>
-              <td>Goto Inst.</td>
-              <td>{compiler.ctx.commands.goto[0]}</td>
-              <td>[label adress]</td>
-              <td>Go back to an adress.</td>
-            </tr>
-            <tr>
-              <td>Conditional goto</td>
-              <td>{compiler.ctx.commands.condBr[0]}</td>
-              <td>[Number, label if arg # 1 is "1", label if arg # 1 is not equal to "1"]</td>
-              <td>Deduce what goto should be transported to.</td>
+              <td>It's a marker for where the while loop ends</td>
             </tr>
             <tr>
               <td>Increment Inst.</td>
-              <td>{compiler.ctx.commands.increment[0]}</td>
+              <td>{compiler.ctx.commands.increment}</td>
               <td>[Number] | [Adress containing a value]</td>
               <td>Increment a value by 1.</td>
             </tr>
             <tr>
               <td>Decrement Inst.</td>
-              <td>{compiler.ctx.commands.decrement[0]}</td>
+              <td>{compiler.ctx.commands.decrement}</td>
               <td>[Number] | [Adress containing a value]</td>
               <td>Decrement a value by 1.</td>
             </tr>
