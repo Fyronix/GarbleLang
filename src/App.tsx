@@ -19,7 +19,11 @@ function App() {
         break;
       }
       case "output": {
-        setOutput(data);
+        setOutput((prevState: string) => prevState + data);
+        break;
+      }
+      case "resetOutput": {
+        setOutput("");
         break;
       }
       default: {
@@ -29,7 +33,7 @@ function App() {
   };
 
   const compileSource = () => {
-    compiler.run(code, setOutput);
+    compiler.run(code, onChange);
   }
 
   return (

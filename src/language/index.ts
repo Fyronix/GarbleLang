@@ -10,15 +10,18 @@ export class GarbleLang {
         this.ctx = new Context();
     }
 
-    public run(sourceCode: string, stdout: (v: string) => void) {
+    public run(sourceCode: string, stdout: (i: string, v: string) => void) {
+        const changeOutput = (s: string) => stdout("output", s);
+        stdout("resetOutput", "");
+
         try {
             let parser = new Parser(sourceCode);
             let nodes = parser.parse();
 
             let vm = new VM(nodes, this.ctx.commands);
-            vm.run(stdout);
+            vm.run(changeOutput);
         } catch (e: any) {
-            stdout(`<span style="color: red;">${e.message}</span>`)
+            changeOutput(`<br/><span style="color: red;">${e.message}</span>`)
         }
     }
 }

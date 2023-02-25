@@ -36,7 +36,7 @@ export class Parser {
 
     private parseInstruction(line: string): Instruction {
         // Extract the operation name and arguments
-        const [operation, argString, addressString] = line.split(" ");
+        let [operation, argString, addressString] = line.split(" ");
         if (typeof operation === 'undefined' || typeof argString === 'undefined') {
             throw Error(`Invalid instruction declaration on line ${this.lineNumber}`);
         }
@@ -44,9 +44,14 @@ export class Parser {
         const args = this.parseArguments(argString);
         const address = this.parseAddress(addressString);
 
+        operation = operation.trim();
+        if (!operation.endsWith(";")) {
+            throw Error(`Invalid syntax, expected ';' after the oepration on line ${this.lineNumber}`);
+        }
+
         // Create the instruction object
         const instruction: Instruction = {
-            operation,
+            operation: operation.substring(0, operation.length-1),
             args,
             address,
         };
@@ -54,25 +59,27 @@ export class Parser {
         return instruction;
     }
 
-    private parseArguments(argString: string): string[] {
+    private parseArguments(argString: string): (string|number)[] {
         // Remove the brackets and split the arguments
-        const argList = argString.slice(1, -1).split(",");
+        const argList = argString.slice(1, -1).trim().split(",");
 
         // Decode each argument from base64
         // TODO: if it's an adress, make it a custom type, not string
         const decodedArgs = argList.map((arg) =>
-            arg.startsWith("@") ? arg : atob(arg.trim())
+            arg.startsWith("@") ? parseInt(arg.substring(1, arg.length)) : atob(arg.trim())
         );
+
+        if (decodedArgs.length == 1 && decodedArgs[0] === "") {
+            return []
+        }
 
         return decodedArgs;
     }
 
-    private parseAddress(addressString: string): number {
+    private parseAddress(addressString: string): number | undefined {
         if (!addressString) {
             // TODO: optional adress
-            throw new Error(
-                `Error on line ${this.lineNumber}: Missing address`
-            );
+            return undefined;
         }
 
         if (addressString.startsWith("@")) {
@@ -96,11 +103,3 @@ export class Parser {
         }
     }
 }
-
-const sourceCode = `hEUsSj9ZLPz0ZTtT; [dGVzdA==] 1
-eM0sFryUTLbJjN7V; [@1] 2`;
-
-const parser = new Parser(sourceCode);
-const instructions = parser.parse();
-
-console.log(instructions);

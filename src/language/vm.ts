@@ -21,10 +21,38 @@ export class VM {
                 case this.instSet.print: {
                     this.expectNArgs(1, inst.args, "print")
                     let val = this.getFinalValue(inst.args[0]);
-                    stdout(`${val}\n`);
+                    stdout(`${val}<br />`);
+
+                    if (typeof inst.address === 'number') {
+                        throw Error(`Address on print statement cant be defined at line ${this.pc+1}`);
+                    }
                 } break;
+
+                case this.instSet.input: {
+                    this.expectNArgs(0, inst.args, "input")
+
+                    if (typeof inst.address === 'undefined') {}
+                    else {
+                        let val = prompt() || "";
+                        this.addValue(inst.address, val)
+                    }
+                } break;
+
+                default: {
+                    throw Error(`Unknown operator (${inst.operation}) at line ${this.pc+1}`)
+                }
             }
+
+            this.pc++;
         }
+    }
+
+    private addValue(addr: number, val: string | undefined) {
+        if (this.memory.has(addr)) {
+            throw Error(`Address has already been defined on like ${this.pc+1}`);
+        }
+
+        this.memory.set(addr, val);
     }
 
     private expectNArgs(n: number, args: any[], s: string) {
@@ -41,7 +69,7 @@ export class VM {
                 throw Error(`Value @${val} is not an actual value (line: ${this.pc+1}}!`);
             }
 
-            return val;
+            return v;
         }
 
         return val;
